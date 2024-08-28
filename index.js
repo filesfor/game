@@ -13,7 +13,7 @@ const gameState = {
 
 io.on('connection', (socket) => {
   socket.on('newPlayer', (playerName) => {
-    console.log("Someone named {playerName} joined!")
+    console.log(`Someone named ${playerName} joined!`);
     gameState.players[socket.id] = {
       x: 250,
       y: 250,
