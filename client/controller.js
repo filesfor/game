@@ -1,5 +1,3 @@
-var socket = io(); // Ensure this line is present and correctly placed
-
 var canvas = document.getElementById("game");
 
 const playerMovement = {
@@ -40,16 +38,13 @@ const keyUpHandler = (e) => {
   }
 };
 
-// Function to handle touch start events
 const touchStartHandler = (e) => {
-  console.log("Touch Start");
   const touch = e.touches[0];
   touchMovement.startX = touch.clientX;
   touchMovement.startY = touch.clientY;
 };
 
 const touchMoveHandler = (e) => {
-  console.log("Touch Move");
   if (touchMovement.startX === null || touchMovement.startY === null) return;
 
   const touch = e.touches[0];
@@ -66,7 +61,6 @@ const touchMoveHandler = (e) => {
 };
 
 const touchEndHandler = () => {
-  console.log("Touch End");
   touchMovement.startX = null;
   touchMovement.startY = null;
   touchMovement.deltaX = 0;
@@ -86,6 +80,5 @@ document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
 setInterval(() => {
-  console.log(playerMovement);
   socket.emit('playerMovement', playerMovement);
 }, 1000 / 60);
