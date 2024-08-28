@@ -1,46 +1,36 @@
 <!doctype html>
 <html>
-<head>
-  <title>Socket.io Game</title>
-  <style>
-    html,
-    body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-    }
+  <head>
+    <title>Socket.io Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    #touchpad {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      width: 150px;
-      height: 150px;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-radius: 50%;
-    }
-    
-    #name-input {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="game" width="0" height="0"></canvas>
-  <div id="touchpad"></div> <!-- Touch control area -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
 
-  <!-- Name input field -->
-  <div id="name-input">
-    <label for="playerName">Enter your name:</label>
-    <input type="text" id="playerName" placeholder="Your Name">
-    <button id="joinGame">Join Game</button>
-  </div>
+      #touchpad {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+      }
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="/script.js"></script>
-  <script src="/controller.js"></script>
-</body>
+    </style>
+  </head>
+  <body>
+    <canvas id="game" width="0" height="0"></canvas>
+    <div id="touchpad"></div> <!-- Touch control area -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/controller.js"></script>
+  </body>
 </html>
