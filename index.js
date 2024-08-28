@@ -1,9 +1,9 @@
 var express = require('express');
 var path = require('path');
-var app = express();  // Initialize app first
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+var app = express();
 var htmlPath = path.join(__dirname, 'client');
 app.use(express.static(htmlPath));
 
@@ -13,13 +13,13 @@ const gameState = {
 
 io.on('connection', (socket) => {
   socket.on('newPlayer', (playerData) => {
-    const { name, sprite } = playerData;
-    console.log(`Player named ${name} with sprite ${sprite} joined!`);
+    const { name } = playerData;
+    console.log(`Player named ${name} joined!`);
     gameState.players[socket.id] = {
       x: 250,
       y: 250,
       name: name || 'Anonymous',
-      sprite: sprite || 'https://filesfor.github.io/bean.png'
+      sprite: 'https://filesfor.github.io/bean.png' // Default sprite
     };
   });
 
