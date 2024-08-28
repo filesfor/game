@@ -1,9 +1,9 @@
 var express = require('express');
 var path = require('path');
+var app = express();  // Initialize app first
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-var app = express();
 var htmlPath = path.join(__dirname, 'client');
 app.use(express.static(htmlPath));
 
