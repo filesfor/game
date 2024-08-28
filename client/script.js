@@ -6,11 +6,13 @@ const ctx = canvas.getContext("2d");
 document.getElementById("game").width = document.documentElement.clientWidth;
 document.getElementById("game").height = document.documentElement.clientHeight;
 
-let playerName = prompt("Enter your name:");
-socket.emit('newPlayer', playerName);
+let playerSprite = new Image();
+const spriteSelector = document.getElementById('sprite');
+const nameInput = document.getElementById('playerName');
 
-const playerSprite = new Image();
-playerSprite.src = 'https://filesfor.github.io/bean.png';
+function updateSprite() {
+  playerSprite.src = spriteSelector.value;
+}
 
 playerSprite.onload = function() {
     socket.on('state', (gameState) => {
@@ -20,6 +22,19 @@ playerSprite.onload = function() {
       }
     });
 };
+
+spriteSelector.addEventListener('change', updateSprite);
+
+function joinGame() {
+  let playerName = nameInput.value.trim();
+  if (playerName) {
+    socket.emit('newPlayer', { name: playerName, sprite: spriteSelector.value });
+  } else {
+    alert('Please enter a name.');
+  }
+}
+
+document.getElementById('name-input').addEventListener('change', joinGame);
 
 function drawPlayer(player) {
     if (playerSprite.complete && playerSprite.naturalHeight !== 0) {
