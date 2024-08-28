@@ -37,8 +37,11 @@ function joinGame() {
 document.getElementById('name-input').addEventListener('change', joinGame);
 
 function drawPlayer(player) {
-    if (playerSprite.complete && playerSprite.naturalHeight !== 0) {
-        ctx.drawImage(playerSprite, player.x, player.y, 50, 50);
+    const playerImage = new Image();
+    playerImage.src = player.sprite;
+
+    playerImage.onload = () => {
+        ctx.drawImage(playerImage, player.x, player.y, 50, 50);
 
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
@@ -48,7 +51,5 @@ function drawPlayer(player) {
 
         ctx.strokeText(player.name, player.x + 25, player.y - 10);
         ctx.fillText(player.name, player.x + 25, player.y - 10);
-    } else {
-        console.error("Image not loaded or failed to load.");
     }
 }
