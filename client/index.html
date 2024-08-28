@@ -19,16 +19,10 @@
       background-color: rgba(0, 0, 0, 0.2);
       border-radius: 50%;
     }
-
-    #sprite-selection {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
+    
     #name-input {
       position: absolute;
-      top: 60px;
+      top: 20px;
       left: 20px;
     }
   </style>
@@ -37,20 +31,11 @@
   <canvas id="game" width="0" height="0"></canvas>
   <div id="touchpad"></div> <!-- Touch control area -->
 
-  <!-- Sprite selection dropdown -->
-  <div id="sprite-selection">
-    <label for="sprite">Choose your sprite:</label>
-    <select id="sprite">
-      <option value="https://filesfor.github.io/sprite1.png">Sprite 1</option>
-      <option value="https://filesfor.github.io/sprite2.png">Sprite 2</option>
-      <option value="https://filesfor.github.io/sprite3.png">Sprite 3</option>
-    </select>
-  </div>
-
   <!-- Name input field -->
   <div id="name-input">
     <label for="playerName">Enter your name:</label>
     <input type="text" id="playerName" placeholder="Your Name">
+    <button id="joinGame">Join Game</button>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
