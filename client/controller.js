@@ -1,3 +1,5 @@
+var socket = io(); // Ensure this line is present and correctly placed
+
 var canvas = document.getElementById("game");
 
 const playerMovement = {
