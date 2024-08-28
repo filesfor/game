@@ -1,9 +1,9 @@
-var app = require('express')();
 var express = require('express');
 var path = require('path');
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+var app = express();
 var htmlPath = path.join(__dirname, 'client');
 app.use(express.static(htmlPath));
 
@@ -12,12 +12,14 @@ const gameState = {
 };
 
 io.on('connection', (socket) => {
-  socket.on('newPlayer', (playerName) => {
-    console.log(`Someone named ${playerName} joined!`);
+  socket.on('newPlayer', (playerData) => {
+    const { name, sprite } = playerData;
+    console.log(`Player named ${name} with sprite ${sprite} joined!`);
     gameState.players[socket.id] = {
       x: 250,
       y: 250,
-      name: playerName || 'Anonymous'
+      name: name || 'Anonymous',
+      sprite: sprite || 'https://filesfor.github.io/bean.png'
     };
   });
 
@@ -40,7 +42,8 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on("disconnect", () => {
+  socket.on('disconnect', () => {
+    console.log(`Player with ID ${socket.id} disconnected.`);
     delete gameState.players[socket.id];
   });
 });
